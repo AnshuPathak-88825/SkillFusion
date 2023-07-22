@@ -7,12 +7,15 @@ function SignUpForm() {
   const [password, setPassword] = useState("");
   const [timezone, setTimezone] = useState("");
   const [country, setCountry] = useState("");
+  const [Name, setName] = useState("");
+
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     navigate(`/user/${username}`, {
       state: {
+        Name,
         username,
         email,
         password,
@@ -25,72 +28,87 @@ function SignUpForm() {
   return (
     <form className="signup-form" onSubmit={handleSubmit}>
       <h2>Sign Up</h2>
-      <div className="form-group">
-        <label htmlFor="username">Username:</label>
-        <input
-          type="text"
-          id="username"
-          value={username}
-          onChange={(e) => {
-            setUsername(e.target.value);
-          }}
-          required
-        />
+      <div className="input-data">
+        <div className="form-group">
+          <label htmlFor="username">Name:</label>
+          <input
+            type="text"
+            id="Name"
+            value={Name}
+            onChange={(e) => {
+              setName(e.target.value);
+            }}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="username">Username:</label>
+          <input
+            type="text"
+            id="username"
+            value={username}
+            onChange={(e) => {
+              setUsername(e.target.value);
+            }}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="timezone">Timezone:</label>
+          <input
+            type="text"
+            id="timezone"
+            value={timezone}
+            onChange={(e) => {
+              setTimezone(e.target.value);
+            }}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <select
+            name="count"
+            id="country"
+            value={country}
+            onChange={(e) => setCountry(e.target.value)}
+          >
+            {allCountriesArray.map((country, index) => (
+              <option
+                value={country.name}
+                key={index}
+                onChange={(e) => setCountry(e.target.value)}
+              >
+                {country.name}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
-      <div className="form-group">
-        <label htmlFor="email">Email:</label>
-        <input
-          type="email"
-          id="email"
-          value={email}
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-          required
-        />
-      </div>
-      <div className="form-group">
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-          required
-        />
-      </div>
-      <div className="form-group">
-        <label htmlFor="timezone">Timezone:</label>
-        <input
-          type="text"
-          id="timezone"
-          value={timezone}
-          onChange={(e) => {
-            setTimezone(e.target.value);
-          }}
-          required
-        />
-      </div>
-      <div className="form-group">
-        <select
-          name="count"
-          id="country"
-          value={country}
-          onChange={(e) => setCountry(e.target.value)}
-        >
-          {allCountriesArray.map((country, index) => (
-            <option
-              value={country.name}
-              key={index}
-              onChange={(e) => setCountry(e.target.value)}
-            >
-              {country.name}
-            </option>
-          ))}
-        </select>
-      </div>
+
       <button type="submit" onChange={handleSubmit}>
         Sign Up
       </button>
