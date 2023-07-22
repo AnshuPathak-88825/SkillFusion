@@ -1,21 +1,25 @@
 import React, { useState } from "react";
 import allCountriesArray from "./Country_list";
-
+import { useNavigate } from "react-router-dom";
 function SignUpForm() {
-  console.log(allCountriesArray[0].name);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [timezone, setTimezone] = useState("");
   const [country, setCountry] = useState("");
-  console.log(country);
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Username:", username);
-    console.log("Email:", email);
-    console.log("Password:", password);
-    console.log("Timezone:", timezone);
-    console.log("Country:", country);
+    navigate(`/user/${username}`, {
+      state: {
+        username,
+        email,
+        password,
+        timezone,
+        country,
+      },
+    });
   };
 
   return (
