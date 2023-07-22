@@ -1,8 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
-const Signin=()=>{
-    return (
-        <div>Signin</div>
-        )
-}
+import SignInForm from "../../components/SiginForm/SigninForm";
+const Signin = () => {
+  return (
+    <div>
+      <div className="signin-container">
+        <SignInForm />
+      </div>
+    </div>
+  );
+};
 export default Signin;
